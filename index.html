@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POPLUXE — Where Every Celebration Feels Luxe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9960C;
+  --gold-light: #F0C84A;
+  --gold-pale: #FDF3D0;
+  --purple: #3D1A6E;
+  --purple-mid: #6B3FA0;
+  --purple-light: #EDE5F8;
+  --white: #FDFAF4;
+  --cream: #F7F0E6;
+  --dark: #1A0A2E;
+  --text: #2C1A4A;
+  --text-muted: #7A6B8A;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5%;
+  background: rgba(253,250,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,150,12,0.15);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem; font-weight: 700;
+  color: var(--purple);
+  letter-spacing: .04em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: .85rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--purple); color: #fff; border: none;
+  padding: .6rem 1.4rem; border-radius: 2px;
+  font-family: var(--font-body); font-size: .82rem; font-weight: 500;
+  cursor: pointer; letter-spacing: .06em; text-transform: uppercase;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--purple-mid); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 5%;
+  position: relative;
+  overflow: hidden;
+  background: var(--dark);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 40%, rgba(107,63,160,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(201,150,12,0.2) 0%, transparent 60%),
+    var(--dark);
+}
+.hero-confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.confetti-dot {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  opacity: 0;
+}
+@keyframes floatUp {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: .7; }
+  90% { opacity: .5; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
+.hero-content { position: relative; z-index: 2; max-width: 640px; }
+.hero-tag {
+  display: inline-block;
+  border: 1px solid rgba(201,150,12,0.5);
+  color: var(--gold-light);
+  font-size: .75rem; font-weight: 500;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: .35rem 1rem; margin-bottom: 1.5rem;
+  border-radius: 1px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+  padding: .9rem 2rem;
+  border: none; border-radius: 2px;
+  font-family: var(--font-body); font-size: .85rem;
+  font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: background .2s, transform .15s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  padding: .9rem 2rem;
+  border: 1px solid rgba(255,255,255,0.35); border-radius: 2px;
+  font-family: var(--font-body); font-size: .85rem;
+  font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: border-color .2s, background .2s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold-light); background: rgba(201,150,12,0.1); }
+.hero-right {
+  position: absolute; right: 5%; top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  display: flex; flex-direction: column; gap: 1rem;
+  opacity: 0; animation: fadeSlideLeft .8s .6s forwards;
+}
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateY(-50%) translateX(40px); }
+  to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+.stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,150,12,0.2);
+  border-radius: 4px;
+  padding: 1.2rem 1.5rem;
+  display: flex; gap: 1rem; align-items: center;
+}
+.stat-icon { font-size: 2rem; }
+.stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--gold-light); line-height: 1; }
+.stat-lbl { font-size: .78rem; color: rgba(255,255,255,0.5); letter-spacing: .06em; text-transform: uppercase; margin-top: 2px; }
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--gold);
+  overflow: hidden; padding: .75rem 0;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex; gap: 3rem;
+  animation: marquee 18s linear infinite;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-item {
+  font-size: .75rem; font-weight: 500;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--dark);
+}
+.marquee-dot { color: var(--purple); }
+
+/* ── SECTIONS ── */
+section { padding: 5rem 5%; }
+.section-label {
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .75rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.section-label::before {
+  content: ''; display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400; line-height: 1.15;
+  color: var(--purple); margin-bottom: 1rem;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* ── CATEGORIES ── */
+#categories { background: var(--cream); }
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.cat-card {
+  background: var(--white);
+  border: 1px solid rgba(201,150,12,0.15);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  text-decoration: none; color: inherit;
+}
+.cat-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(201,150,12,0.12);
+}
+.cat-icon { font-size: 2.4rem; margin-bottom: .75rem; display: block; }
+.cat-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--purple); margin-bottom: .4rem;
+}
+.cat-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+.cat-badge {
+  display: inline-block; margin-top: .75rem;
+  background: var(--gold-pale); color: var(--gold);
+  font-size: .7rem; font-weight: 500;
+  padding: .2rem .7rem; border-radius: 1px;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* ── PRODUCTS SHOWCASE ── */
+#products { background: var(--white); }
+.products-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; margin-bottom: 3rem;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  border: 1px solid rgba(201,150,12,0.15);
+  border-radius: 4px; overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(61,26,110,0.1);
+}
+.product-img {
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.product-img.purple-bg { background: var(--purple-light); }
+.product-img.gold-bg { background: var(--gold-pale); }
+.product-img.cream-bg { background: var(--cream); }
+.product-img.dark-bg { background: #F0EAF8; }
+.product-body { padding: 1.25rem; }
+.product-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--purple); margin-bottom: .3rem; }
+.product-desc { font-size: .8rem; color: var(--text-muted); margin-bottom: .75rem; line-height: 1.5; }
+.product-footer { display: flex; justify-content: space-between; align-items: center; }
+.product-price { font-weight: 500; color: var(--gold); font-size: .95rem; }
+.product-price span { font-size: .75rem; color: var(--text-muted); font-weight: 400; }
+.buy-btn {
+  background: var(--purple); color: #fff;
+  border: none; padding: .45rem 1rem;
+  border-radius: 2px; font-size: .75rem;
+  font-weight: 500; cursor: pointer;
+  letter-spacing: .05em; text-transform: uppercase;
+  transition: background .2s;
+}
+.buy-btn:hover { background: var(--purple-mid); }
+
+/* ── CHANNELS ── */
+#channels { background: var(--dark); }
+.channels-title .section-title { color: #fff; }
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem; margin-top: 3rem;
+}
+.channel-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px; padding: 1.5rem 1.2rem;
+  text-align: center;
+  transition: border-color .2s, background .2s;
+  cursor: pointer;
+}
+.channel-card:hover { border-color: var(--gold); background: rgba(201,150,12,0.05); }
+.channel-icon { font-size: 2rem; margin-bottom: .75rem; }
+.channel-name { font-weight: 500; color: #fff; font-size: .9rem; margin-bottom: .3rem; }
+.channel-tag { font-size: .72rem; color: rgba(255,255,255,0.4); letter-spacing: .06em; text-transform: uppercase; }
+
+/* ── CORPORATE ── */
+#corporate {
+  background: linear-gradient(135deg, var(--purple) 0%, #1A0A2E 100%);
+  color: #fff;
+}
+.corp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.corp-content .section-title { color: #fff; }
+.corp-features { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.corp-feature {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,0.06);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+}
+.corp-feature-icon { font-size: 1.4rem; flex-shrink: 0; }
+.corp-feature-title { font-weight: 500; font-size: .9rem; margin-bottom: .2rem; }
+.corp-feature-desc { font-size: .8rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.corp-form-card {
+  background: var(--white);
+  border-radius: 6px;
+  padding: 2.5rem;
+  color: var(--text);
+}
+.corp-form-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--purple); margin-bottom: .4rem; }
+.corp-form-sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: .78rem; font-weight: 500; color: var(--text-muted); margin-bottom: .4rem; letter-spacing: .05em; text-transform: uppercase; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: .7rem .9rem;
+  border: 1px solid rgba(201,150,12,0.25);
+  border-radius: 2px;
+  font-family: var(--font-body); font-size: .88rem;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .2s;
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.form-submit {
+  width: 100%; background: var(--gold); color: var(--dark);
+  padding: .9rem; border: none; border-radius: 2px;
+  font-family: var(--font-body); font-size: .85rem;
+  font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  cursor: pointer; margin-top: .5rem; transition: background .2s;
+}
+.form-submit:hover { background: var(--gold-light); }
+
+/* ── WHY US ── */
+#why { background: var(--cream); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.why-card {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  border-bottom: 3px solid var(--gold);
+}
+.why-num { font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--gold-pale); line-height: 1; margin-bottom: .5rem; }
+.why-title { font-weight: 600; font-size: .95rem; margin-bottom: .5rem; color: var(--purple); }
+.why-desc { font-size: .82rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ── WHATSAPP FLOAT ── */
+.whatsapp-float {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+  background: #25D366; color: #fff;
+  width: 58px; height: 58px;
+  border-radius: 50%; border: none;
+  font-size: 1.6rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform .2s;
+  text-decoration: none;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+.whatsapp-tooltip {
+  position: fixed; bottom: 2rem; right: 5rem;
+  background: var(--dark); color: #fff;
+  font-size: .8rem; padding: .5rem 1rem;
+  border-radius: 2px; z-index: 200;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0; transition: opacity .2s;
+}
+.whatsapp-float:hover + .whatsapp-tooltip { opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  padding: 4rem 5% 2rem;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand-name { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
+.footer-brand-name span { color: var(--gold); }
+.footer-tagline { font-size: .85rem; font-style: italic; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
+.footer-gstin { font-size: .72rem; letter-spacing: .06em; color: rgba(255,255,255,0.35); margin-bottom: .3rem; }
+.footer-col-title { font-size: .72rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.footer-links a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: .82rem; transition: color .2s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: .75rem; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: .5rem; }
+
+/* ── ANIMATIONS ── */
+.fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn .7s forwards; }
+@keyframes fadeIn { to { opacity: 1; transform: none; } }
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .25s; }
+.delay-3 { animation-delay: .4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-right { display: none; }
+  .products-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .corp-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav { padding: 1rem 4%; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">POP<span>LUXE</span></div>
+  <ul class="nav-links">
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#products">Bestsellers</a></li>
+    <li><a href="#channels">Order</a></li>
+    <li><a href="#corporate">Corporate</a></li>
+    <li><a href="#why">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('corporate').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-confetti" id="confetti"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-tag">✦ New Delhi's Celebration Destination</div>
+    <h1 class="hero-title">Where Every<br><em>Celebration</em><br>Feels Luxe</h1>
+    <p class="hero-sub">Premium party decor, curated gifting & festive essentials — delivered to your door. Available on Amazon, Blinkit, Zepto & our store.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Shop Bestsellers</a>
+      <a href="#corporate" class="btn-outline">Corporate Gifting</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card fade-in delay-1">
+      <div class="stat-icon">🎁</div>
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-lbl">Curated products</div>
+      </div>
+    </div>
+    <div class="stat-card fade-in delay-2">
+      <div class="stat-icon">⚡</div>
+      <div>
+        <div class="stat-num">2hr</div>
+        <div class="stat-lbl">Quick delivery via Blinkit & Zepto</div>
+      </div>
+    </div>
+    <div class="stat-card fade-in delay-3">
+      <div class="stat-icon">✨</div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">Premium, handpicked items</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Birthday Decor <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Anniversary Gifting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Balloon Bouquets <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Baby Showers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Diwali Hampers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Corporate Gifting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Return Gift Sets <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Same-Day Delivery <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Birthday Decor <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Anniversary Gifting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Balloon Bouquets <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Baby Showers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Diwali Hampers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Corporate Gifting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Return Gift Sets <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Same-Day Delivery <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-label">Browse by occasion</div>
+  <h2 class="section-title">Everything for <em>Every Celebration</em></h2>
+  <div class="cat-grid">
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">🎂</span>
+      <div class="cat-name">Birthday</div>
+      <div class="cat-desc">Balloons, kits, banners, candles & more</div>
+      <span class="cat-badge">100+ items</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">💝</span>
+      <div class="cat-name">Anniversary</div>
+      <div class="cat-desc">Romantic decor, gift boxes, flowers</div>
+      <span class="cat-badge">60+ items</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">👶</span>
+      <div class="cat-name">Baby Shower</div>
+      <div class="cat-desc">Pastel decor, gender reveals, hampers</div>
+      <span class="cat-badge">40+ items</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">🪔</span>
+      <div class="cat-name">Diwali</div>
+      <div class="cat-desc">Diyas, lanterns, gift hampers, crackers decor</div>
+      <span class="cat-badge">Seasonal</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">🎊</span>
+      <div class="cat-name">Party Essentials</div>
+      <div class="cat-desc">Plates, cups, confetti, streamers, blowouts</div>
+      <span class="cat-badge">200+ items</span>
+    </a>
+    <a href="#corporate" class="cat-card">
+      <span class="cat-icon">🎁</span>
+      <div class="cat-name">Corporate Gifting</div>
+      <div class="cat-desc">Branded hampers, festive kits, bulk orders</div>
+      <span class="cat-badge">Custom orders</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">💒</span>
+      <div class="cat-name">Wedding</div>
+      <div class="cat-desc">Sangeet decor, return gifts, favour boxes</div>
+      <span class="cat-badge">New</span>
+    </a>
+    <a href="#products" class="cat-card">
+      <span class="cat-icon">🎀</span>
+      <div class="cat-name">Gift Wrapping</div>
+      <div class="cat-desc">Luxury boxes, ribbons, tissue, bags</div>
+      <span class="cat-badge">50+ items</span>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-intro">
+    <div>
+      <div class="section-label">Our bestsellers</div>
+      <h2 class="section-title">Curated with <em>love & luxury</em></h2>
+    </div>
+    <div style="padding-top:1rem;">
+      <p style="font-size:.9rem;color:var(--text-muted);line-height:1.8;">Every product at POPLUXE is handpicked for quality and visual magic. Available on Amazon, Shopify, Blinkit and Zepto — so you're never far from the perfect celebration.</p>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img purple-bg">🎈</div>
+      <div class="product-body">
+        <div class="product-name">Balloon Arch Kit</div>
+        <div class="product-desc">Purple & gold latex balloon arch, 100 pcs with garland strip</div>
+        <div class="product-footer">
+          <div class="product-price">₹599 <span>onwards</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=balloon+arch+kit','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img gold-bg">🎂</div>
+      <div class="product-body">
+        <div class="product-name">Birthday Decor Kit</div>
+        <div class="product-desc">Banner, 20 balloons, candles, confetti & sash — all-in-one</div>
+        <div class="product-footer">
+          <div class="product-price">₹799 <span>per kit</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=birthday+decoration+kit','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img cream-bg">🎁</div>
+      <div class="product-body">
+        <div class="product-name">Luxury Gift Box Set</div>
+        <div class="product-desc">Rigid gift boxes with magnetic lid, ribbon & tissue paper</div>
+        <div class="product-footer">
+          <div class="product-price">₹349 <span>/ set of 3</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=luxury+gift+box','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img dark-bg">✨</div>
+      <div class="product-body">
+        <div class="product-name">Gold Foil Balloon Set</div>
+        <div class="product-desc">Number & letter foil balloons — personalise any celebration</div>
+        <div class="product-footer">
+          <div class="product-price">₹249 <span>per balloon</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=gold+foil+balloons','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img purple-bg">🪔</div>
+      <div class="product-body">
+        <div class="product-name">Festive Diwali Hamper</div>
+        <div class="product-desc">Diya set, dry fruits, chocolates & premium gift wrap</div>
+        <div class="product-footer">
+          <div class="product-price">₹1,299 <span>onwards</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=diwali+gift+hamper','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img gold-bg">🎊</div>
+      <div class="product-body">
+        <div class="product-name">Return Gift Pack</div>
+        <div class="product-desc">Pre-packed return gift hampers — packs of 10 & 20</div>
+        <div class="product-footer">
+          <div class="product-price">₹249 <span>/ unit</span></div>
+          <button class="buy-btn" onclick="window.open('https://www.amazon.in/s?k=return+gift+pack','_blank')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="channels">
+  <div class="channels-title">
+    <div class="section-label" style="color:var(--gold);">Available on</div>
+    <h2 class="section-title">Order wherever<br><em>you are</em></h2>
+  </div>
+  <div class="channels-grid">
+    <a href="https://www.amazon.in" target="_blank" class="channel-card" style="text-decoration:none;">
+      <div class="channel-icon">📦</div>
+      <div class="channel-name">Amazon</div>
+      <div class="channel-tag">1–2 day delivery</div>
+    </a>
+    <a href="https://www.flipkart.com" target="_blank" class="channel-card" style="text-decoration:none;">
+      <div class="channel-icon">🛒</div>
+      <div class="channel-name">Flipkart</div>
+      <div class="channel-tag">Pan India</div>
+    </a>
+    <a href="#" class="channel-card" style="text-decoration:none;">
+      <div class="channel-icon">⚡</div>
+      <div class="channel-name">Blinkit</div>
+      <div class="channel-tag">10-min delivery</div>
+    </a>
+    <a href="#" class="channel-card" style="text-decoration:none;">
+      <div class="channel-icon">🚀</div>
+      <div class="channel-name">Zepto</div>
+      <div class="channel-tag">10-min delivery</div>
+    </a>
+    <a href="#" class="channel-card" style="text-decoration:none;">
+      <div class="channel-icon">🍽️</div>
+      <div class="channel-name">Swiggy Instamart</div>
+      <div class="channel-tag">Quick delivery</div>
+    </a>
+    <a href="https://wa.me/919999999999?text=Hi%20POPLUXE!%20I%27d%20like%20to%20order" target="_blank" class="channel-card" style="text-decoration:none;border-color:rgba(37,211,102,0.3);">
+      <div class="channel-icon">💬</div>
+      <div class="channel-name">WhatsApp</div>
+      <div class="channel-tag">Custom orders</div>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem;">
+    <p style="color:rgba(255,255,255,0.4);font-size:.85rem;margin-bottom:1rem;">Prefer to browse our full collection?</p>
+    <a href="#products" class="btn-primary">View All Products</a>
+  </div>
+</section>
+
+<!-- CORPORATE GIFTING -->
+<section id="corporate">
+  <div class="corp-grid">
+    <div class="corp-content">
+      <div class="section-label">B2B & Bulk Orders</div>
+      <h2 class="section-title">Corporate <em>Gifting</em><br>Made Effortless</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:.9rem;line-height:1.8;margin-bottom:2rem;">Curated gift hampers for your team, clients & festive seasons. Custom branding available. Minimum 10 units. Pan-India delivery.</p>
+      <div class="corp-features">
+        <div class="corp-feature">
+          <div class="corp-feature-icon">🏷️</div>
+          <div>
+            <div class="corp-feature-title">Custom Branding</div>
+            <div class="corp-feature-desc">Your logo on boxes, ribbons & cards — brand every gifting moment.</div>
+          </div>
+        </div>
+        <div class="corp-feature">
+          <div class="corp-feature-icon">📦</div>
+          <div>
+            <div class="corp-feature-title">Bulk Pricing</div>
+            <div class="corp-feature-desc">Up to 40% off on orders of 50+ units. Dedicated account manager.</div>
+          </div>
+        </div>
+        <div class="corp-feature">
+          <div class="corp-feature-icon">🚚</div>
+          <div>
+            <div class="corp-feature-title">Pan-India Delivery</div>
+            <div class="corp-feature-desc">Coordinated bulk shipping across all your office locations.</div>
+          </div>
+        </div>
+        <div class="corp-feature">
+          <div class="corp-feature-icon">🧾</div>
+          <div>
+            <div class="corp-feature-title">GST Invoice</div>
+            <div class="corp-feature-desc">Proper tax invoices for smooth expense reimbursement & input credit.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="corp-form-card">
+      <div class="corp-form-title">Get a Custom Quote</div>
+      <div class="corp-form-sub">Fill in the details — we'll get back within 4 hours.</div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Priya Sharma" id="f-name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Acme Corp" id="f-company">
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 98xxx xxxxx" id="f-phone">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Occasion</label>
+          <select id="f-occasion">
+            <option value="">Select...</option>
+            <option>Diwali Gifting</option>
+            <option>Employee Birthday</option>
+            <option>Client Gifting</option>
+            <option>Annual Day</option>
+            <option>Festival Hampers</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>No. of Units</label>
+          <select id="f-units">
+            <option value="">Select...</option>
+            <option>10 – 25</option>
+            <option>25 – 50</option>
+            <option>50 – 100</option>
+            <option>100 – 500</option>
+            <option>500+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Budget per unit (approx)</label>
+        <select id="f-budget">
+          <option value="">Select...</option>
+          <option>₹500 – ₹1,000</option>
+          <option>₹1,000 – ₹1,500</option>
+          <option>₹1,500 – ₹2,500</option>
+          <option>₹2,500+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Any special requirements?</label>
+        <textarea placeholder="Custom branding, delivery locations, preferred products..." id="f-notes"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitQuote()">Send Enquiry via WhatsApp ✦</button>
+      <p style="font-size:.72rem;color:var(--text-muted);margin-top:.75rem;text-align:center;">We'll send a personalised quote to your WhatsApp within 4 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Why POPLUXE</div>
+  <h2 class="section-title">Celebrations deserve <em>the best</em></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Curated, Not Generic</div>
+      <div class="why-desc">Every SKU is handpicked for visual impact and quality — no filler items, only the good stuff.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">10-Minute Delivery</div>
+      <div class="why-desc">Party emergency? We're on Blinkit & Zepto for instant party essentials in Delhi NCR.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">GST Registered</div>
+      <div class="why-desc">Proper invoices for every order. Ideal for corporate gifting and reimbursement claims.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-title">Trademarked Brand</div>
+      <div class="why-desc">POPLUXE is a registered trademark — you're buying from a real, committed business.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">05</div>
+      <div class="why-title">Personalised Orders</div>
+      <div class="why-desc">Custom names, messages, branding — WhatsApp us and we'll make it personal.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">06</div>
+      <div class="why-title">South Delhi Roots</div>
+      <div class="why-desc">Based in South Delhi, built for Delhi's discerning celebration culture. We get your aesthetic.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">POP<span>LUXE</span></div>
+      <div class="footer-tagline">Where Every Celebration Feels Luxe</div>
+      <div class="footer-gstin">GSTIN: XXXXXXXXXXXX</div>
+      <div class="footer-gstin">Trademark Registered · India</div>
+      <div style="margin-top:1rem;">
+        <a href="https://wa.me/919999999999?text=Hi%20POPLUXE!" target="_blank" style="color:var(--gold-light);font-size:.82rem;text-decoration:none;">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#categories">Birthday Decor</a></li>
+        <li><a href="#categories">Party Kits</a></li>
+        <li><a href="#categories">Gift Wrapping</a></li>
+        <li><a href="#categories">Festive Hampers</a></li>
+        <li><a href="#categories">Return Gifts</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Order</div>
+      <ul class="footer-links">
+        <li><a href="https://www.amazon.in" target="_blank">Amazon</a></li>
+        <li><a href="https://www.flipkart.com" target="_blank">Flipkart</a></li>
+        <li><a href="#" target="_blank">Blinkit</a></li>
+        <li><a href="#" target="_blank">Zepto</a></li>
+        <li><a href="#" target="_blank">Swiggy Instamart</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Help</div>
+      <ul class="footer-links">
+        <li><a href="#corporate">Corporate Gifting</a></li>
+        <li><a href="https://wa.me/919999999999" target="_blank">WhatsApp Us</a></li>
+        <li><a href="mailto:hello@popluxe.in">hello@popluxe.in</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Return Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 POPLUXE. All rights reserved.</span>
+    <span>Made with ✦ in South Delhi</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919999999999?text=Hi%20POPLUXE!%20I%20want%20to%20place%20an%20order" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+
+<script>
+// Confetti
+const confettiEl = document.getElementById('confetti');
+const colors = ['#C9960C','#F0C84A','#6B3FA0','#3D1A6E','#E8C1FF','#FFE066','#fff'];
+for (let i = 0; i < 32; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'confetti-dot';
+  const size = Math.random() * 8 + 4;
+  dot.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%;
+    background:${colors[Math.floor(Math.random()*colors.length)]};
+    animation-duration:${Math.random()*8+6}s;
+    animation-delay:${Math.random()*6}s;
+    border-radius:${Math.random()>0.5?'50%':'2px'};
+  `;
+  confettiEl.appendChild(dot);
+}
+
+// WhatsApp quote form
+function submitQuote() {
+  const name = document.getElementById('f-name').value || 'Customer';
+  const company = document.getElementById('f-company').value || '';
+  const phone = document.getElementById('f-phone').value || '';
+  const occasion = document.getElementById('f-occasion').value || '';
+  const units = document.getElementById('f-units').value || '';
+  const budget = document.getElementById('f-budget').value || '';
+  const notes = document.getElementById('f-notes').value || '';
+  const msg = `Hi POPLUXE! 👋 I'd like a corporate gifting quote.
+Name: ${name}
+Company: ${company}
+Contact: ${phone}
+Occasion: ${occasion}
+Units needed: ${units}
+Budget/unit: ${budget}
+Requirements: ${notes}`;
+  window.open('https://wa.me/919999999999?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// Intersection observer for fade-ins
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'none';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.cat-card, .product-card, .why-card, .corp-feature, .channel-card, .stat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
